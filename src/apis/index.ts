@@ -10,7 +10,7 @@ import GetCommentListResponseDto from "./response/board/get-comment-list.respons
 import { GetPopularListResponseDto, GetRelationListResponseDto } from "./response/search";
 import { PatchNicknameRequestDto, PatchProfileImageRequestDto } from "./request/user";
 
-const DOMAIN = 'http://13.55.140.207:8070';
+const DOMAIN = 'http://localhost:8080';
 
 const API_DOMAIN = `${DOMAIN}/api/v1`;
 

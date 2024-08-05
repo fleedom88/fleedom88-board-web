@@ -21,6 +21,14 @@
     cursor: pointer;
 }
 
+.header-middle-box{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    cursor: pointer;
+}
+
 .header-logo{
     color: rgba(0, 0, 0, 1);
 

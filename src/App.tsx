@@ -8,8 +8,9 @@ import UserP from 'views/User';
 import BoardDeatil from 'views/Board/Detail';
 import BoardWrite from 'views/Board/Write';
 import BoardUpdate from 'views/Board/Update';
+import Map from 'views/Map';
 import Container from 'layouts/Container';
-import { MAIN_PATH } from 'constant';
+import { MAIN_PATH, MAP_PATH } from 'constant';
 import { AUTH_PATH } from 'constant';
 import { SEARCH_PATH } from 'constant';
 import { USER_PATH } from 'constant';
@@ -71,6 +72,7 @@ useEffect( () => {
     <Routes>
         <Route element={<Container/>}>
               <Route path={MAIN_PATH()} element={<Main/>} />
+              <Route path={MAP_PATH()} element={<Map/>} />
               <Route path={AUTH_PATH()} element={<Authentication/>} />
               <Route path={SEARCH_PATH(':searchWord')} element={<Search/>} />
               <Route path={USER_PATH(':userEmail')} element={<UserP/>} />

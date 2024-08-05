@@ -1,7 +1,7 @@
 import React, { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from 'react'
 import './style.css'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { AUTH_PATH, BOARD_DETAIL_PATH, BOARD_PATH, BOARD_UPDATE_PATH, BOARD_WRITE_PATH, MAIN_PATH, SEARCH_PATH, USER_PATH } from 'constant';
+import { AUTH_PATH, BOARD_DETAIL_PATH, BOARD_PATH, BOARD_UPDATE_PATH, BOARD_WRITE_PATH, MAIN_PATH, MAP_PATH, SEARCH_PATH, USER_PATH } from 'constant';
 import { Cookies, useCookies } from 'react-cookie';
 import { useBoardStore, useLoginUserStore } from 'stores';
 import { PatchBoardRequest, fileUploadRequest,postBoardRequest } from 'apis';
@@ -34,13 +34,20 @@ const [isBoardWritePage, setBoardWritePage] = useState<boolean>(false);
 const [isBoardUpdatePage, setBoardUpdatePage] = useState<boolean>(false);
 //        state: 게시물 유저 페이지 상태                        //
 const [isUserPage, setUserPage] = useState<boolean>(false);
+//        state: 헬스장 찾아보기 페이지 상태                        //
+const [isMapPage, setMapPage] = useState<boolean>(false);
 
 //          function: 네비게이트 함수               //
 const navigate = useNavigate(); // 페이지 이동
 
-//          event handler: 로고 클릭 이벤트 처리 함수       //
+//          event handler: 왼쪽 상단 로고 클릭 이벤트 처리 함수       //
 const onLogoClickHandler =() =>{
   navigate(MAIN_PATH());
+}
+
+//          event handler: 헬스장 찾아보기 클릭 이벤트 처리 함수       //
+const onMapClickHandler =() =>{
+  navigate(MAP_PATH());
 }
 
 //          component: 검색 버튼 컴포넌트           //
@@ -151,6 +158,7 @@ const MyPageButton = () =>{
 
   //        render:  로그인 버튼 컴포넌트 렌더링      //
   return <div className='black-button' onClick={onSignInButtonClickHandler}>{'로그인'}</div>;
+  
     
 }
 
@@ -252,6 +260,9 @@ useEffect(()=>{
 
   const isUserPage = pathname.startsWith(USER_PATH(''));
   setUserPage(isUserPage);
+
+  const isMapPage = pathname.startsWith(MAP_PATH());
+  setMapPage(isMapPage);
  
 },[pathname]);
 
@@ -269,11 +280,17 @@ useEffect ( () => {
           <div className='icon-box'>
             <div className='icon logo-dark-icon'></div>
           </div>
-          <div className='header-logo'>{'fleedom88'}</div>
+          <div className='header-logo'>{'운동할까?'}</div>
+        </div>
+        <div className='header-middle-box' onClick={onMapClickHandler}>
+          <div className='icon-box'>
+            <div className='icon logo-dark-icon'></div>
+          </div>
+          <div className='header-logo'>{'헬스장 찾아보기'}</div>
         </div>
         <div className='header-right-box'>
-          {(isAuthPage || isMainPage || isSearchPage || isBoardDetailPage) && <SearchButton/>}
-          {(isMainPage || isSearchPage || isBoardDetailPage || isUserPage) && <MyPageButton/>}
+          {(isAuthPage || isMainPage || isSearchPage || isBoardDetailPage || isMapPage) && <SearchButton/>}
+          {(isMainPage || isSearchPage || isBoardDetailPage || isUserPage || isMapPage) && <MyPageButton/>}
           {(isBoardWritePage || isBoardUpdatePage) && <UploadButton/>}
         </div>
       </div>
