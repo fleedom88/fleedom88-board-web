@@ -3,3 +3,4 @@ npm i zustand
 npm install axios
 npm i react-daum-postcode
 npm i dayjs
+npm install react-kakao-maps-sdk
