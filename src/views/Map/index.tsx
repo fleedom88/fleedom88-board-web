@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Map, MapMarker, useMap } from "react-kakao-maps-sdk";
 
 declare global {
@@ -80,11 +80,16 @@ export default function KakaoKeywordMap(){
           onClick={(marker) => {
             map.panTo(marker.getPosition());
             setSelectedPlace(places[i]);
-          }}
-          onMouseOver={() => setIsVisible(true)}
-          onMouseOut={() => setIsVisible(false)}
+            setIsVisible(!isVisible)
+          }}                   
         >
-          {isVisible && <div style={{ color: '#000' }}>{content}</div>}
+          {isVisible && 
+          <div style={{ padding:'5px', color: '#000' }}>
+            {content}
+              <div>
+              {'게시물 보러가기'}
+              </div>
+            </div>}
         </MapMarker>
       )
     
